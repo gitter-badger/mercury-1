@@ -1,5 +1,5 @@
-# mercury
-Extraction d'Information Textuelles
+# Mercury
+Projet d'Extraction d'Information Textuelles
 
     
 ## Structure des Dossiers
