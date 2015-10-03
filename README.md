@@ -3,6 +3,7 @@ Extraction d'Information Textuelles
 
     
 ## Structure des Dossiers
+```
 src                             → Sources de l'Application
  └ main          
     └ java                      → Dossier contenant les fichiers sources écrits en java
@@ -17,3 +18,4 @@ src                             → Sources de l'Application
     └ scala                     → Dossier contenant les fichiers de tests écrits en scala
 target                          → Dossier contenant les executables et les fichiers compilés
 build.sbt                       → Fichier de configuration SBT
+```
