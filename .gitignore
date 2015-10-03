@@ -8,7 +8,7 @@ src_managed/
 *.iml
 *.ipr
 *.iws
-.idea
+.idea/
 out
 
 # Ignoring Vim  specific files
@@ -23,5 +23,3 @@ build
 .settings
 org.scala-ide.sdt.core/META-INF/MANIFEST.MF
 org.scala-ide.sdt.update-site/site.xml
-
-
