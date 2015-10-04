@@ -21,19 +21,19 @@ public class Parser {
 	 * @return EtiquetteEnum correspondant a la valeur passee en parametre
 	 */
 	public static EtiquetteEnum stringToEnum(String etiquette) {
-		switch (etiquette) {
-		case "pos":
-			return EtiquetteEnum.POS;
-		case "neu":
-			return EtiquetteEnum.NEU;
-		case "neg":
-			return EtiquetteEnum.NEG;
-		case "irr":
-			return EtiquetteEnum.IRR;
-		case "???":
-			return EtiquetteEnum.NONE;
-		default:
-			return EtiquetteEnum.NONE;
+		switch (etiquette.toLowerCase().trim()) {
+			case "pos":
+				return EtiquetteEnum.POS;
+			case "neu":
+				return EtiquetteEnum.NEU;
+			case "neg":
+				return EtiquetteEnum.NEG;
+			case "irr":
+				return EtiquetteEnum.IRR;
+			case "???":
+				return EtiquetteEnum.NONE;
+			default:
+				return EtiquetteEnum.NONE;
 		}
 	}
 
@@ -68,23 +68,18 @@ public class Parser {
 
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
 				new FileInputStream(new File(fileName)), "UTF-8"))) {
+			
 			for (String line; (line = br.readLine()) != null;) {
-
-				// System.out.println(line);
 				String tweetTab[] = line.substring(1).split("\\)", 2);
 				String[] tweetHeader = tweetTab[0].trim().split(",");
 				String tweetContent = tweetTab[1].trim();
-				// System.out.println("Header : " + tweetHeader);
-				// System.out.println("Content : " + tweetContent);
 
 				EtiquetteEnum etiquette = stringToEnum(tweetHeader[1]);
 				String firm = tweetHeader[2];
-				Tweet tweet = new Tweet(tweetHeader[0], etiquette, firm,
-						tweetContent);
+				Tweet tweet = new Tweet(tweetHeader[0], etiquette, firm, tweetContent);
 				corpus.add(tweet);
 			}
 		}
-		// System.out.println(corpus);
 		return corpus;
 	}
 }

@@ -9,14 +9,14 @@ public class Tweet implements Comparable<Tweet> {
 	private String idTweet;
 	private EtiquetteEnum etiquette;
 	private String firm;
-	private String TweetContent;
+	private String tweetContent;
 
 	public Tweet(String idTweet, EtiquetteEnum etiquette, String firm,
 			String tweetContent) {
 		this.idTweet = idTweet;
 		this.etiquette = etiquette;
 		this.firm = firm;
-		TweetContent = tweetContent;
+		this.tweetContent = tweetContent;
 	}
 
 	public Tweet() {
@@ -47,19 +47,16 @@ public class Tweet implements Comparable<Tweet> {
 	}
 
 	public String getTweetContent() {
-		return TweetContent;
+		return tweetContent;
 	}
 
 	public void setTweetContent(String tweetContent) {
-		TweetContent = tweetContent;
+		this.tweetContent = tweetContent;
 	}
 
 	@Override
 	public String toString() {
-		String result = "";
-		result += "[" + etiquette + ", " + firm + "]";
-		result += "[" + TweetContent + "]";
-		return result;
+		return "(" + idTweet + ", " + etiquette + ", " + firm + ") " + tweetContent;
 	}
 
 	/*

@@ -21,7 +21,8 @@ public class Annotation {
 	Corpus corpus_final = new Corpus();
 
 	/**
-	 * method permettant d'annoter les tweets
+	 * methode permettant d'annoter les tweets
+	 * 
 	 * @param fileNameCorpus1
 	 * @param fileNameCorpus2
 	 * @param fileNameCorpus3
@@ -32,20 +33,12 @@ public class Annotation {
 			String fileNameCorpus3, String fileNameCorpusFinal)
 			throws Exception {
 		try {
-			Tweet tweet = new Tweet();
-			
 			corpus1 = Parser.parseFile(fileNameCorpus1);
-//			System.out.println(corpus1);
 			corpus2 = Parser.parseFile(fileNameCorpus2);
 			corpus3 = Parser.parseFile(fileNameCorpus3);
 
-			for (int i = 0; i < corpus1.size(); i++) {
-				
-			}
-			
 			for (Tweet entry : corpus1) {
-				
-				tweet = validateAnnotationTweet(entry,
+				Tweet tweet = validateAnnotationTweet(entry,
 						corpus1.floor(entry).getEtiquette(),
 						corpus2.floor(entry).getEtiquette(),
 						corpus3.floor(entry).getEtiquette());
@@ -55,11 +48,8 @@ public class Annotation {
 			writeCorpus(fileNameCorpusFinal);
 
 		} catch (Exception e) {
-			// e.printStackTrace();
 			throw new Exception("Impossible d'annoter les corpus : "
 					+ e.getMessage());
-		} finally {
-
 		}
 	}
 
@@ -69,11 +59,9 @@ public class Annotation {
 	 * @throws IOException
 	 */
 	private void writeCorpus(String fileNameCorpusFinal) throws IOException {
-//		File f = new File("fileNameCorpusFinal");
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-			    new FileOutputStream(fileNameCorpusFinal), "UTF-8"
-			));
-//		FileWriter fw = new FileWriter(f);
+			    new FileOutputStream(fileNameCorpusFinal), "UTF-8"));
+		
 		for (Tweet entry : corpus_final) {
 			out.write("(" + entry.getIdTweet() + ","
 					+ Parser.enumToString(entry.getEtiquette()) + ","
@@ -139,44 +127,59 @@ public class Annotation {
 			}
 		}
 
+		// Les 3 etiquettes sont diff�rentes
 		if (et1 != et2 && et1 != et3 && et2 != et3) {
 			/* REFAIRE */
 			tweet.setEtiquette(EtiquetteEnum.NONE);
 			tweet.setFirm(inputTweet.getFirm() +" "+ messageConflit(pos, neu, neg, irr));
-		} else if (et1 == et2 && et1 == et3) {
+		} 
+		// Les 3 etiquettes sont identiques
+		else if (et1 == et2 && et1 == et3) {
 			/* OK */
 			tweet.setEtiquette(et1);
-		} else if (irr == 2) {
+		} 
+		// 2 etiquettes sur 3 sont irrelevant --> irrelevant
+		else if (irr == 2) {
 			/* IRRELEVANT */
 			tweet.setEtiquette(EtiquetteEnum.IRR);
 
-		} else if (irr == 1) {
+		} 
+		// 1 etiquette est irr et les autres ne le sont pas 
+		else if (irr == 1) {
 			/* REFAIRE */
 			tweet.setEtiquette(EtiquetteEnum.NONE);
 			tweet.setFirm(inputTweet.getFirm() +" "+ messageConflit(pos, neu, neg, irr));
 
-		} else if (neu == 2) {
+		} 
+		// 2 etiquettes sont neutres --> neutre
+		else if (neu == 2) {
 			/* NEUTRE */
 			tweet.setEtiquette(EtiquetteEnum.NEU);
 
-		} else if (neg == 2) {
+		} 
+		else if (neg == 2) {
+			// 2 negatives + 1 positive 
 			if (pos == 1) {
 				/* REFAIRE */
 				tweet.setEtiquette(EtiquetteEnum.NONE);
 				tweet.setFirm(inputTweet.getFirm() +" "+ messageConflit(pos, neu, neg, irr));
 
-			} else {
+			} 
+			// 2 negatives + 1 neutre --> negative
+			else {
 				/* NEGATIF */
 				tweet.setEtiquette(EtiquetteEnum.NEG);
-
 			}
-		} else if (pos == 2) {
+		} 
+		else if (pos == 2) {
+			// 2 positives + 1 negative
 			if (neg == 1) {
 				/* REFAIRE */
 				tweet.setEtiquette(EtiquetteEnum.NONE);
 				tweet.setFirm(inputTweet.getFirm() +" "+ messageConflit(pos, neu, neg, irr));
-
-			} else {
+			} 
+			// 2 positives + 1 neutre --> positive
+			else {
 				/* POSITIF */
 				tweet.setEtiquette(EtiquetteEnum.POS);
 			}

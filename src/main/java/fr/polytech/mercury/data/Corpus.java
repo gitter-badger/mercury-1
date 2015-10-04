@@ -13,11 +13,10 @@ public class Corpus extends TreeSet<Tweet> {
 	public String toString() {
 		String result = "";
 
-		for (Tweet  entry : this) {
-			result += "Id : "+entry.getIdTweet()+"\n";
-			result += "tweet : "+entry.getTweetContent()+"\n";
+		for (Tweet tweet : this) {
+			result += tweet + "\n";
 		}
-
+		
 		return result;
 	}
 }
