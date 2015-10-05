@@ -81,8 +81,19 @@ public class Tweet implements Comparable<Tweet> {
 
 	@Override
 	public boolean equals(Object obj) {
+		if(obj == null){
+			return false;
+		}
+		if(obj == this){
+			return true;
+		}
 		Tweet tweet = (Tweet) obj;
 		return tweet.getIdTweet().equals(idTweet);
+	}
+	
+	@Override
+	public int hashCode() {
+		return getIdTweet().hashCode();
 	}
 
 }

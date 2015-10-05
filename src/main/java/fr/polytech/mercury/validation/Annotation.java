@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import fr.polytech.mercury.data.Corpus;
 import fr.polytech.mercury.data.EtiquetteEnum;
 import fr.polytech.mercury.data.Tweet;
+import fr.polytech.mercury.parser.Parser;
 
 /**
  * @author Guillaume

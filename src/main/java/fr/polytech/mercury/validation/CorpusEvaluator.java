@@ -3,6 +3,7 @@ package fr.polytech.mercury.validation;
 import fr.polytech.mercury.data.Corpus;
 import fr.polytech.mercury.data.EtiquetteEnum;
 import fr.polytech.mercury.data.Tweet;
+import fr.polytech.mercury.parser.Parser;
 
 /**
  * Contient les informations suivantes : matrice de contingence, taux de reussite et kappa

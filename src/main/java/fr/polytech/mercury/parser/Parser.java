@@ -1,4 +1,4 @@
-package fr.polytech.mercury.validation;
+package fr.polytech.mercury.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
